@@ -1,4 +1,4 @@
-// Last updated: 5/19/2026, 4:48:19 AM
+// Last updated: 5/19/2026, 4:48:47 AM
 1function resultsArray(nums, k) {
 2  const n = nums.length;
 3  const result = [];
