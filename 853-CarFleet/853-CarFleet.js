@@ -1,23 +1,17 @@
-// Last updated: 5/23/2026, 3:17:21 AM
+// Last updated: 5/23/2026, 3:41:54 AM
 1function carFleet(target, position, speed) {
-2  const cars = [];
-3
-4  for (let i = 0; i < position.length; i++) {
-5    cars.push([position[i], speed[i]])
-6  }
+2  const cars = position
+3    .map((pos, i) => [pos, speed[i]])
+4    .sort((a, b) => b[0] - a[0]);
+5
+6  const stack = [];
 7
-8  cars.sort((a, b) => a[0] - b[0]);
-9
-10  const stack = [];
-11
-12  for (const [position, speed] of cars){
-13    const steps = (target - position) / speed
-14    while (stack.at(-1) <= steps){
-15      stack.pop();
-16    }
-17
-18    stack.push(steps);
-19  }
-20
-21  return stack.length;
-22}
+8  for (const [pos, spd] of cars) {
+9    const time = (target - pos) / spd;
+10    if (stack.length === 0 || time > stack[stack.length - 1]) {
+11      stack.push(time);
+12    }
+13  }
+14
+15  return stack.length;
+16}
