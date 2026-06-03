@@ -1,4 +1,4 @@
-// Last updated: 6/4/2026, 2:33:00 AM
+// Last updated: 6/4/2026, 2:45:14 AM
 1function longestSubarray(nums, limit) {
 2  const max_deque = [];
 3  const min_deque = [];
@@ -22,18 +22,17 @@
 21    min_deque.push(r);
 22    max_deque.push(r);
 23
-24    //compare extremes
-25    while (max_deque.length && Math.abs(num - nums[max_deque[0]]) > limit) {
-26      l = Math.max(l, max_deque.shift() + 1);
-27    }
-28
-29    //compare extremes
-30    while (min_deque.length && Math.abs(num - nums[min_deque[0]]) > limit) {
-31      l = Math.max(l, min_deque.shift() + 1);
-32    }
-33
-34    longest = Math.max(longest, r-l+1);
-35  }
-36
-37  return longest;
-38}
+24    
+25    while (Math.abs(nums[max_deque[0]] - nums[min_deque[0]]) > limit){
+26      if (max_deque[0] < min_deque[0]) {
+27        l = max_deque.shift() + 1
+28      } else {
+29        l = min_deque.shift() + 1;
+30      }
+31    }
+32
+33    longest = Math.max(longest, r-l+1);
+34  }
+35
+36  return longest;
+37}
